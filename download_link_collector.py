@@ -24,7 +24,12 @@ for url in urls:
             tag_link = soup.find("a", {"class": "btn btn-success"})['href']
             df.append(tag_link)
         except:
-            error_links.append(url[0])
+            try:
+                src = soup.find("iframe")['src']
+                df.append(src)
+            except:
+                error_links.append(url[0])
 print("Number of pdf links = ", len(df))
 DataFrame(df, columns=["url"]).to_csv("download_url.csv", index=False)
-DataFrame(error_links, columns=["url"]).to_csv("error_download_links.csv", index=False)
+if len(error_links) > 0:
+    DataFrame(error_links, columns=["url"]).to_csv("error_download_links.csv", index=False)
