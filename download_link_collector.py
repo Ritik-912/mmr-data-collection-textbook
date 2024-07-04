@@ -2,11 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 from pandas import read_csv, DataFrame
 import re
+from tqdm import tqdm
+
 urls = read_csv("scrapped_url.csv").values.tolist()
 viewer_links = "http://ndl.iitkgp.ac.in/module-viewer/viewer.php?id="
 df = []
 error_links = []
-for url in urls:
+for url in tqdm(urls):
     link = "/".join(url[0].split("/")[4:]).split('?')[0]
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/532.36',
