@@ -19,19 +19,19 @@ for url in tqdm(urls):
     try:
         for script in scripts:
             match = re.search(r'"url":"(.*?)"', script.string)
-            df.append("http://ndl.iitkgp.ac.in"+match.group(1))
+            df.append({'pdf_url': "http://ndl.iitkgp.ac.in"+match.group(1), 'viewer_url': url[0]})
             break
     except:
         try:
             tag_link = soup.find("a", {"class": "btn btn-success"})['href']
-            df.append(tag_link)
+            df.append({'pdf_url': tag_link, 'viewer_url': url[0]})
         except:
             try:
                 src = soup.find("iframe")['src']
-                df.append(src)
+                df.append({'pdf_url': src, 'viewer_url': url[0]})
             except:
-                error_links.append(url[0])
+                error_links.append({'viewer_url': url[0]})
 print("Number of pdf links = ", len(df))
-DataFrame(df, columns=["url"]).to_csv("download_url.csv", index=False)
+DataFrame(df).to_csv("download_url.csv", index=False)
 if len(error_links) > 0:
-    DataFrame(error_links, columns=["url"]).to_csv("error_download_links.csv", index=False)
+    DataFrame(error_links).to_csv("error_download_links.csv", index=False)
