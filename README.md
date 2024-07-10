@@ -6,73 +6,71 @@ This repository is dedicated to collecting PDFs from the National Digital Librar
 
 The repository contains the following scripts and their respective purposes:
 
-1. **link_scrapper.py**: Scrapes initial PDF viewer links and saves them.
-2. **download_link_collector.py**: Collects exact PDF URLs from the viewer pages.
-3. **missing_url.py**: Identifies missed URLs during the scraping process.
-4. **downloader.py**: Downloads the PDFs using the collected URLs.
+- **link_scrapper.py**: Scrapes initial PDF viewer links and saves them.
+- **download_link_collector.py**: Collects exact PDF URLs from the viewer pages.
+- **missing_url.py**: Identifies missed URLs during the scraping process.
+- **downloader.py**: Downloads the PDFs using the collected URLs.
 
 ## Detailed Process
 
 ### 1. Scraping PDF Viewer Links
 
-- **Script**: [link_scrapper.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/link_scrapper.py)
+- **Script**: `link_scrapper.py`
 - **Environment**: Windows 11
 - **Description**: Utilizes Selenium with Firefox browser to open the browsing page on the NDLI website and scrolls to load all the PDF viewer links.
-- **Output**: [scrapped_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/scrapped_url.csv) containing the initial list of PDF viewer links.
+- **Output**: `scrapped_url.csv` containing the initial list of PDF viewer links.
 
 ### 2. Collecting Exact PDF URLs
 
-- **Script**: [download_link_collector.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/download_link_collector.py)
+- **Script**: `download_link_collector.py`
 - **Environment**: Windows 11
 - **Description**: Extracts the exact PDF URLs from the viewer pages.
-- **Output**: 
-  - [download_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/download_url.csv): Contains 1961 PDF links.
-  - [error_download_links.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/error_download_links.csv): Contains 7 error links.
+- **Output**:
+  - `download_url.csv`: Contains 963 PDF links.
+  - `error_download_links.csv`: Contains 46 error links.
 
 ### 3. Identifying Missed URLs
 
-- **Script**: [missing_url.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/missing_url.py)
+- **Script**: `missing_url.py`
 - **Environment**: Windows 11
 - **Description**: Identifies URLs that were missed during the initial collection.
-- **Output**: [missed_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/missed_url.csv) containing 36 missed URLs.
+- **Output**: `missed_url.csv` containing the missed URLs.
 
 ### 4. Collecting Remaining Missed Links
 
-- **Manually**: Added the missed link using MS Excel in [download_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/download_url.csv)
+- **Manual Step**: Added the missed link using MS Excel in `download_url.csv`
 - **Environment**: Windows 11
 - **Description**: Collects the remaining missed PDF URLs.
+- **Output**: Updated `download_url.csv` to contain 964 links.
 
 ### 5. Downloading PDFs
 
-- **Script**: [downloader.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/downloader.py)
+- **Script**: `downloader.py`
 - **Environment**: Linux
-- **Description**: Downloads the PDFs using the URLs in `total_download_url.csv`.
-- **Output**: 
-  - [excepted_download.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/excepted_downloads.csv) for links that caused exceptions during download.
-  - [excepted_downloads.sh](https://github.com/Ritik-912/mmr-data-collection/blob/main/excepted_downloads.sh) script was used to attempt re-downloads, but all of them had connection timeout errors.
+- **Description**: Downloads the PDFs using the URLs in `download_url.csv`.
+- **Output**:
+  - `excepted_download.csv` for links that caused exceptions during download.
+  - `excepted_downloads.sh` script was used to attempt re-downloads, but all of them had connection timeout errors.
 
-### Final Output
+## Final Output
 
-After completing the above steps, we successfully downloaded 1836 PDFs. 
+After completing the above steps, we successfully downloaded 937 PDFs.
 
-### Future Work
+## Future Work
 
 The next step involves extracting questions from these PDFs for the multimodal and multilingual reasoning tasks.
 
----
+## Dependencies
 
-Please ensure that you have the necessary dependencies installed and configured before running the scripts by installing libraries in [windows_requirements.txt](https://github.com/Ritik-912/mmr-data-collection/blob/main/windows_requirements.txt) and [linux_requirements.txt](https://github.com/Ritik-912/mmr-data-collection/blob/main/linux_requirements.txt).
+Please ensure that you have the necessary dependencies installed and configured before running the scripts by installing libraries in `windows_requirements.txt` and `linux_requirements.txt`.
+
+## Contributions
 
 For any queries or contributions, feel free to open an issue or submit a pull request.
-___
 
-### Flow Diagram:
+## Flow Diagram
 
-
-
-
-```
-
+```plaintext
 +------------+      +-------------------------+      +----------------------+
 |            | ---> | link_scrapper.py        | ---> | scrapped_url.csv     |
 |   Start    |      +-------------------------+      +----------------------+
@@ -91,7 +89,7 @@ ___
                    +-------------------------+      | .csv                 |
                                                     +----------------------+
                    +-------------------------+      
-                   | Final Output: 1881 PDFs | 
+                   | Final Output: 937 PDFs  | 
                    | Downloaded              | 
                    +-------------------------+   
 
@@ -100,3 +98,5 @@ ___
                    | Questions from PDFs     | 
                    +-------------------------+ 
 ```
+
+---
