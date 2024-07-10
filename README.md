@@ -9,10 +9,7 @@ The repository contains the following scripts and their respective purposes:
 1. **link_scrapper.py**: Scrapes initial PDF viewer links and saves them.
 2. **download_link_collector.py**: Collects exact PDF URLs from the viewer pages.
 3. **missing_url.py**: Identifies missed URLs during the scraping process.
-4. **download_missed_links_collector.py**: Collects remaining missed PDF URLs.
-5. **total_download_url.py**: Aggregates all PDF download URLs.
-6. **downloader.py**: Downloads the PDFs using the collected URLs.
-7. **excepted_downloads.sh**: Attempts to download PDFs that initially failed.
+4. **downloader.py**: Downloads the PDFs using the collected URLs.
 
 ## Detailed Process
 
@@ -26,7 +23,7 @@ The repository contains the following scripts and their respective purposes:
 ### 2. Collecting Exact PDF URLs
 
 - **Script**: [download_link_collector.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/download_link_collector.py)
-- **Environment**: Linux
+- **Environment**: Windows 11
 - **Description**: Extracts the exact PDF URLs from the viewer pages.
 - **Output**: 
   - [download_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/download_url.csv): Contains 1961 PDF links.
@@ -35,27 +32,17 @@ The repository contains the following scripts and their respective purposes:
 ### 3. Identifying Missed URLs
 
 - **Script**: [missing_url.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/missing_url.py)
-- **Environment**: Linux
+- **Environment**: Windows 11
 - **Description**: Identifies URLs that were missed during the initial collection.
 - **Output**: [missed_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/missed_url.csv) containing 36 missed URLs.
 
 ### 4. Collecting Remaining Missed Links
 
-- **Script**: [download_missed_links_collector.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/download_missed_links_collector.py)
-- **Environment**: Linux
+- **Manually**: Added the missed link using MS Excel in [download_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/download_url.csv)
+- **Environment**: Windows 11
 - **Description**: Collects the remaining missed PDF URLs.
-- **Output**: 
-  - [remaining_download_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/remaining_download_url.csv)
-  - [error_download_links(1).csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/error_download_links(1).csv)
 
-### 5. Aggregating All Download URLs
-
-- **Script**: [total_download_url.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/total_download_url.py)
-- **Environment**: Linux
-- **Description**: Aggregates all PDF download URLs into a single file.
-- **Output**: [total_download_url.csv](https://github.com/Ritik-912/mmr-data-collection/blob/main/total_download_url.csv)
-
-### 6. Downloading PDFs
+### 5. Downloading PDFs
 
 - **Script**: [downloader.py](https://github.com/Ritik-912/mmr-data-collection/blob/main/downloader.py)
 - **Environment**: Linux
@@ -74,7 +61,7 @@ The next step involves extracting questions from these PDFs for the multimodal a
 
 ---
 
-Please ensure that you have the necessary dependencies installed and configured before running the scripts by installing libraries in [requirements.txt](https://github.com/Ritik-912/mmr-data-collection/blob/main/requirements.txt).
+Please ensure that you have the necessary dependencies installed and configured before running the scripts by installing libraries in [windows_requirements.txt](https://github.com/Ritik-912/mmr-data-collection/blob/main/windows_requirements.txt) and [linux_requirements.txt](https://github.com/Ritik-912/mmr-data-collection/blob/main/linux_requirements.txt).
 
 For any queries or contributions, feel free to open an issue or submit a pull request.
 ___
@@ -99,28 +86,13 @@ ___
                    +-------------------------+      +----------------------+
                    | missing_url.py          | ---> | missed_url.csv       |
                    +-------------------------+      +----------------------+
-
-                   +-------------------------+      +----------------------+
-                   | download_missed_links   | ---> | remaining_download_url|
-                   | _collector.py           |      | .csv                 |
-                   +-------------------------+      | error_download_links |
-                                                    | (1).csv              |
-                                                    +----------------------+
-                   +-------------------------+      +----------------------+
-                   | total_download_url.py   | ---> | total_download_url   |
-                   +-------------------------+      | .csv                 |
-                                                    +----------------------+
                    +-------------------------+      +----------------------+
                    | downloader.py           | ---> | excepted_download    |
                    +-------------------------+      | .csv                 |
                                                     +----------------------+
-                   +-------------------------+      +----------------------+
-                   | excepted_downloads.sh   | ---> | Connection timeout   |
-                   +-------------------------+      | errors               |
-                                                    +----------------------+
                    +-------------------------+      
                    | Final Output: 1881 PDFs | 
-                   | Downloaded             | 
+                   | Downloaded              | 
                    +-------------------------+   
 
                    +-------------------------+      

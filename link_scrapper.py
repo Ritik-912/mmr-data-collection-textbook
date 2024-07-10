@@ -37,7 +37,7 @@ def scroll_to_load_all(driver, num):
         iterations -= 1
 
 driver = initialize_driver()
-driver.get("https://ndl.iitkgp.ac.in/se_browse/resourceType?resourceType%5B%5D=060000%2F060200%2F060203&subjectClass%5B%5D=03000000&subjectClass%5B%5D=03000000%2F03010000&subjectClass%5B%5D=03000000%2F03020000&subjectClass%5B%5D=03000000%2F03030000&subjectClass%5B%5D=03000000%2F03040000&subjectClass%5B%5D=03000000%2F03050000&subjectClass%5B%5D=03000000%2F03060000")
+driver.get("https://ndl.iitkgp.ac.in/se_browse/resourceType?resourceType%5B%5D=010000%2F010100&accessRights%5B%5D=open&type%5B%5D=text&subjectClass%5B%5D=03000000&subjectClass%5B%5D=03000000%2F03010000&subjectClass%5B%5D=03000000%2F03020000&subjectClass%5B%5D=03000000%2F03030000&subjectClass%5B%5D=03000000%2F03040000&subjectClass%5B%5D=03000000%2F03050000&subjectClass%5B%5D=03000000%2F03060000&subjectClass%5B%5D=03000000%2F03080000")
 driver.maximize_window()
 driver.implicitly_wait(10)
 number_of_pdfs = int(driver.find_element(By.ID, "result-msg").text.split()[0].replace(",", ""))

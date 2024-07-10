@@ -31,11 +31,12 @@ def download_pdf(url: str, save_path: str) -> None:
         excepted_pdfs.append({"pdf_url": url, "save_path": save_path})
 
 def save_path(url: str) -> str:
-    name = "../" + url.split('/')[4]
+    name = "../textbook/" + url.split('/')[4]
     makedirs(name, exist_ok=True)
-    name += "/" + "_".join(url.split('/')[-2:]) + ".pdf"
+    name += "/" + "_".join(url.split('/')[-2:]).split('?')[0] + ".pdf"
     return name
 
-for pdf_url, viewer_url in tqdm(read_csv("total_download_url.csv").values.tolist()):
+for pdf_url, _, viewer_url in tqdm(read_csv("download_url.csv").values.tolist()):
     download_pdf(url = pdf_url, save_path = save_path(url = viewer_url))
-DataFrame(excepted_pdfs).to_csv("excepted_downloads.csv")
+if len(excepted_pdfs) > 0:
+    DataFrame(excepted_pdfs).to_csv("excepted_downloads.csv")
